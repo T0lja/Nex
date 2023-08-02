@@ -5,7 +5,7 @@ using Nex.Offsets;
 namespace Nex.Features
 {
     /// <summary>
-    /// Trigger bot. Shoots when hovering over an enemy.
+    /// Show every enemies on minimap
     /// </summary>
     public class ShowEnemy :
         ThreadedComponent

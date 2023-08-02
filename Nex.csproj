@@ -94,6 +94,7 @@
     <Compile Include="Features\EspBox.cs" />
     <Compile Include="Features\EspHitBoxes.cs" />
     <Compile Include="Features\EspSkeleton.cs" />
+    <Compile Include="Features\EspSnapline.cs" />
     <Compile Include="Features\ShowEnemy.cs" />
     <Compile Include="Features\TriggerBot.cs" />
     <Compile Include="Gfx\DeviceExtensions.cs" />
