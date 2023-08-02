@@ -70,12 +70,32 @@ namespace Nex.Data.Internal
                 return false;
             }
             LocalPlayer = Memory.Read<IntPtr>(Memory.clientBase + Offsets.Offsets.dwLocalPlayer);
-            LocalTeam = Memory.Read<int>((int)(LocalPlayer + Offsets.Offsets.m_iTeamNum));
+            LocalTeam = GetTeam((int)(LocalPlayer));
             LifeState = gameProcess.Process.Read<bool>(AddressBase + Offsets.Offsets.m_lifeState);
             Health = gameProcess.Process.Read<int>(AddressBase + Offsets.Offsets.m_iHealth);
-            Team = gameProcess.Process.Read<int>(AddressBase + Offsets.Offsets.m_iTeamNum).ToTeam();
+            Team = GetTeam((int)(AddressBase)).ToTeam();
             Origin = gameProcess.Process.Read<Vector3>(AddressBase + Offsets.Offsets.m_vecOrigin);
             return true;
+        }
+
+        #endregion
+
+        #region getTeam
+
+        public static int GetTeam(int Address)
+        {
+            Memory.m_iNumberOfBytesRead = 128;
+            byte[] TeamBytes = new byte[Memory.m_iNumberOfBytesRead];
+            Memory.ReadBytes(Memory.Read<int>(Address + 0x6c) + 4, ref TeamBytes);
+            // 获取人物模型结果
+            if (System.Text.Encoding.UTF8.GetString(TeamBytes).Contains("/ctm"))
+            {
+                return 3; // CT
+            } else if (System.Text.Encoding.UTF8.GetString(TeamBytes).Contains("/tm"))
+            {
+                return 2; // T
+            }
+            return Memory.Read<int>(Address + Offsets.Offsets.m_iTeamNum);
         }
 
         #endregion

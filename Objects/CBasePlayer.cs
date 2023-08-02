@@ -1,4 +1,7 @@
-﻿using Nex.Offsets;
+﻿using Nex.Data.Internal;
+using Nex.Offsets;
+using System;
+using System.Windows.Controls;
 
 namespace Nex.Objects;
 
@@ -26,7 +29,8 @@ static class CBasePlayer
     {
         get
         {
-            return Memory.Read<int>(LocalPlayerPtr + Offsets.Offsets.m_iTeamNum);
+            return EntityBase.GetTeam(LocalPlayerPtr);
+
         }
     }
 }
