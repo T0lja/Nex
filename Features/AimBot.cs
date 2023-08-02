@@ -209,6 +209,7 @@ namespace Nex.Features
                     || !entity.IsAlive()
                     || entity.AddressBase == GameData.Player.AddressBase
                     || !entity.isSpottedByMask() // 无暴露 不自瞄
+                    || entity.GetDistance() == 0f // No self cam
                     )
                 {
                     continue;

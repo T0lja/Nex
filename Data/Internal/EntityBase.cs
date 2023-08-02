@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Net;
 using Microsoft.DirectX;
 using Nex.Data.Raw;
 using Nex.Offsets;
@@ -44,7 +45,10 @@ namespace Nex.Data.Internal
         /// Model origin (in world).
         /// </summary>
         public Vector3 Origin { get; private set; }
-
+        /// <summary>
+        /// Self model origin (in world).
+        /// </summary>
+        public Vector3 SelfOrigin { get; private set; }
         #endregion
 
         #region // routines
@@ -68,7 +72,15 @@ namespace Nex.Data.Internal
             return bSpottedByMask > 0;
         }
 
-      
+        /// <summary>
+        /// Get the distance between self and entity
+        /// </summary>
+        public virtual double GetDistance()
+        {
+            float DistanceX = SelfOrigin.X - Origin.X;
+            float DistanceY = SelfOrigin.Y - Origin.Y;
+            return Math.Sqrt(DistanceX * DistanceX + DistanceY * DistanceY);
+        }
 
         /// <summary>
         /// Read <see cref="AddressBase"/>.
@@ -92,6 +104,8 @@ namespace Nex.Data.Internal
             bSpottedByMask = gameProcess.Process.Read<int>(AddressBase + Offsets.Offsets.m_bSpottedByMask);
             Team = GetTeam((int)(AddressBase)).ToTeam();
             Origin = gameProcess.Process.Read<Vector3>(AddressBase + Offsets.Offsets.m_vecOrigin);
+            SelfOrigin = gameProcess.Process.Read<Vector3>(LocalPlayer + Offsets.Offsets.m_vecOrigin);
+
             return true;
         }
 

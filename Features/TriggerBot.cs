@@ -75,7 +75,12 @@ namespace Nex.Features
             // go through entities
             foreach (var entity in GameData.Entities)
             {
-                if (!entity.IsAlive() || entity.AddressBase == player.AddressBase)
+                if (!entity.IsAlive() || entity.AddressBase == player.AddressBase
+                   || entity.Team == entity.LocalTeam.ToTeam() // No teammate
+                   || entity.AddressBase == entity.LocalPlayer // No self
+                   || !entity.isSpottedByMask() // 无暴露 不自瞄
+                   )
+
                 {
                     continue;
                 }

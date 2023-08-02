@@ -23,6 +23,7 @@ namespace Nex.Features
                 if (!entity.IsAlive() || entity.AddressBase == graphics.GameData.Player.AddressBase
                    || entity.Team == entity.LocalTeam.ToTeam() // No teammate
                    || entity.AddressBase == entity.LocalPlayer // No self
+                   || entity.GetDistance() == 0f // No self cam (sep mode)
                    )
                 {
                     continue;
