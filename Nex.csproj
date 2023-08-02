@@ -91,8 +91,10 @@
     <Compile Include="Data\Raw\Team.cs" />
     <Compile Include="Features\AimBot.cs" />
     <Compile Include="Features\EspAimCrosshair.cs" />
+    <Compile Include="Features\EspBox.cs" />
     <Compile Include="Features\EspHitBoxes.cs" />
     <Compile Include="Features\EspSkeleton.cs" />
+    <Compile Include="Features\ShowEnemy.cs" />
     <Compile Include="Features\TriggerBot.cs" />
     <Compile Include="Gfx\DeviceExtensions.cs" />
     <Compile Include="Gfx\Math\GfxMath.cs" />

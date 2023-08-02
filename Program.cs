@@ -41,6 +41,8 @@ namespace Nex.External
         /// <inheritdoc cref="AimBot"/>
         private AimBot AimBot { get; set; }
 
+        /// <inheritdoc cref="ShowEnemy"/>
+        private ShowEnemy ShowEnemy { get; set; }
         #endregion
 
         #region // ctor
@@ -66,6 +68,7 @@ namespace Nex.External
             Graphics = new Graphics(WindowOverlay, GameProcess, GameData);
             TriggerBot = new TriggerBot(GameProcess, GameData);
             AimBot = new AimBot(GameProcess, GameData);
+            ShowEnemy = new ShowEnemy(GameData);
 
             GameProcess.Start();
             GameData.Start();
@@ -73,6 +76,7 @@ namespace Nex.External
             Graphics.Start();
             TriggerBot.Start();
             AimBot.Start();
+            ShowEnemy.Start();
         }
 
         /// <inheritdoc />
