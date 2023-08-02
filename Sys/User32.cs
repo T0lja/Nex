@@ -31,6 +31,8 @@ namespace Nex.Sys
         /// </summary>
         public const int WS_EX_TRANSPARENT = 0x20;
 
+        public const int WS_EX_TOOLWINDOW = 0x00000080;
+
         /// <summary>
         /// Passes the hook information to the next hook procedure in the current hook chain.
         /// A hook procedure can call this function either before or after processing the hook information.

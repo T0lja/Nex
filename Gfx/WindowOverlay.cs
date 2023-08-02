@@ -56,17 +56,18 @@ namespace Nex.Gfx
                 Top = -32000,
                 StartPosition = FormStartPosition.Manual,
                 ShowInTaskbar = false,
-                ShowIcon = false
+                ShowIcon = false,
+                
             };
-            
-           
+
+
 
             Window.Load += (sender, args) =>
             {
                 var exStyle = User32.GetWindowLong(Window.Handle, User32.GWL_EXSTYLE);
                 exStyle |= User32.WS_EX_LAYERED;
                 exStyle |= User32.WS_EX_TRANSPARENT;
-
+                exStyle |= User32.WS_EX_TOOLWINDOW;
                 // make the window's border completely transparent
                 User32.SetWindowLong(Window.Handle, User32.GWL_EXSTYLE, (IntPtr)exStyle);
 
