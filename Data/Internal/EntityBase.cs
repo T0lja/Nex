@@ -31,6 +31,12 @@ namespace Nex.Data.Internal
         /// </summary>
         public int Health { get; protected set; }
 
+
+        /// <summary>
+        /// bSpottedByMask
+        /// </summary>
+        public int bSpottedByMask { get; protected set; }
+
         /// <inheritdoc cref="Team"/>
         public Team Team { get; protected set; }
 
@@ -55,6 +61,16 @@ namespace Nex.Data.Internal
         }
 
         /// <summary>
+        /// Is entity exposed?
+        /// </summary>
+        public virtual bool isSpottedByMask()
+        {
+            return bSpottedByMask > 0;
+        }
+
+      
+
+        /// <summary>
         /// Read <see cref="AddressBase"/>.
         /// </summary>
         protected abstract IntPtr ReadAddressBase(GameProcess gameProcess);
@@ -73,6 +89,7 @@ namespace Nex.Data.Internal
             LocalTeam = GetTeam((int)(LocalPlayer));
             LifeState = gameProcess.Process.Read<bool>(AddressBase + Offsets.Offsets.m_lifeState);
             Health = gameProcess.Process.Read<int>(AddressBase + Offsets.Offsets.m_iHealth);
+            bSpottedByMask = gameProcess.Process.Read<int>(AddressBase + Offsets.Offsets.m_bSpottedByMask);
             Team = GetTeam((int)(AddressBase)).ToTeam();
             Origin = gameProcess.Process.Read<Vector3>(AddressBase + Offsets.Offsets.m_vecOrigin);
             return true;

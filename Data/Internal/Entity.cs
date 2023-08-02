@@ -83,7 +83,11 @@ namespace Nex.Data.Internal
         {
             return base.IsAlive() && !Dormant;
         }
-
+        /// <inheritdoc />
+        public override bool isSpottedByMask()
+        {
+            return base.isSpottedByMask() && !Dormant;
+        }
         /// <inheritdoc />
         protected override IntPtr ReadAddressBase(GameProcess gameProcess)
         {
