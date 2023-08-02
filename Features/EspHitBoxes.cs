@@ -3,6 +3,7 @@ using Nex.Data.Internal;
 using Nex.Data.Raw;
 using Nex.Gfx;
 using Nex.Gfx.Math;
+using Nex.Utils;
 using Graphics = Nex.Gfx.Graphics;
 
 namespace Nex.Features
@@ -17,13 +18,16 @@ namespace Nex.Features
             foreach (var entity in graphics.GameData.Entities)
             {
                 // validate
-                if (!entity.IsAlive() || entity.AddressBase == graphics.GameData.Player.AddressBase)
+                if (!entity.IsAlive() || entity.AddressBase == graphics.GameData.Player.AddressBase
+                   || entity.Team == entity.LocalTeam.ToTeam() // No teammate
+                   || entity.AddressBase == entity.LocalPlayer // No self
+                   )
                 {
                     continue;
                 }
 
                 // draw
-                var color = entity.Team == Team.Terrorists ? Color.Gold : Color.DodgerBlue;
+                var color = entity.isSpottedByMask() == true ? Color.DodgerBlue : Color.Gold;
                 Draw(graphics, entity, color);
             }
         }

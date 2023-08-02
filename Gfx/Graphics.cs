@@ -142,7 +142,7 @@ namespace Nex.Gfx
             DrawFps();
             EspAimCrosshair.Draw(this);
             EspSkeleton.Draw(this);
-            //EspHitBoxes.Draw(this);
+            EspHitBoxes.Draw(this);
         }
 
         /// <summary>
