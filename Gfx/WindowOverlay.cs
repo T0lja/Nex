@@ -55,7 +55,11 @@ namespace Nex.Gfx
                 Left = -32000,
                 Top = -32000,
                 StartPosition = FormStartPosition.Manual,
+                ShowInTaskbar = false,
+                ShowIcon = false
             };
+            
+           
 
             Window.Load += (sender, args) =>
             {
@@ -111,6 +115,7 @@ namespace Nex.Gfx
         /// <inheritdoc />
         protected override void FrameAction()
         {
+            User32.SetWindowDisplayAffinity(Window.Handle, 0x00000011);
             Update(GameProcess.WindowRectangleClient);
         }
 

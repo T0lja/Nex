@@ -127,5 +127,9 @@ namespace Nex.Sys
         /// </summary>
         [DllImport("user32.dll", SetLastError = true)]
         public static extern bool UnhookWindowsHookEx(IntPtr hInstance);
+
+
+        [DllImport("user32.dll")]
+        public static extern bool SetWindowDisplayAffinity(IntPtr hwnd, uint affinity);
     }
 }
