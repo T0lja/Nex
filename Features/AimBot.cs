@@ -207,7 +207,9 @@ namespace Nex.Features
                     || _weaponList.ActiveWeapon.IsC4orTaser()
                     || _weaponList.ActiveWeapon.IsKnife()
                     || !entity.IsAlive()
-                    || entity.AddressBase == GameData.Player.AddressBase)
+                    || entity.AddressBase == GameData.Player.AddressBase
+                    || !entity.isSpottedByMask() // 无暴露 不自瞄
+                    )
                 {
                     continue;
                 }
