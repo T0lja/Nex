@@ -1,7 +1,6 @@
 # Nex
 
-Legit as fuck.
-Vac unddetectable.
+Legit
 AimBot
 TriggerBot
 Skeleton
